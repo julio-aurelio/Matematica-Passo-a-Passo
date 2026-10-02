@@ -1,0 +1,8 @@
+{
+  "name": "jogo-matematica-guiado",
+  "private": true,
+  "scripts": {
+    "build": "node scripts/gerar-config.js",
+    "dev": "node scripts/gerar-config.js && npx serve public"
+  }
+}

@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Matemática Passo a Passo</title>
+  <link rel="icon" href="favicon.ico">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<main>
+
+  <div id="top" hidden>
+    <button id="back">← Voltar</button>
+    <button id="home">🏠 Início</button>
+  </div>
+
+  <!-- 1. ano -->
+  <section id="s-ano" class="screen">
+    <h1>🧮 Matemática Passo a Passo</h1>
+    <h2>Qual é o seu ano?</h2>
+    <div class="ano-grid">
+      <button class="ano" data-ano="6">6º<small>ano</small></button>
+      <button class="ano" data-ano="7">7º<small>ano</small></button>
+      <button class="ano" data-ano="8">8º<small>ano</small></button>
+      <button class="ano" data-ano="9">9º<small>ano</small></button>
+    </div>
+    <button id="to-rank" class="link">🏆 Ver ranking</button>
+  </section>
+
+  <!-- 2. nome -->
+  <section id="s-nome" class="screen" hidden>
+    <h2>Quem está jogando?</h2>
+    <form id="form-nome" class="card" autocomplete="off">
+      <label>Seu apelido <input id="nick" maxlength="20" placeholder="Ex: Julinho"></label>
+      <label>Sua turma <input id="turma" maxlength="12" placeholder="Ex: 7A"></label>
+      <button class="big">Continuar ▶</button>
+      <p id="msg" class="msg err" role="alert"></p>
+    </form>
+  </section>
+
+  <!-- 3. operação -->
+  <section id="s-op" class="screen" hidden>
+    <h2>O que vamos treinar?</h2>
+    <p id="quem" class="sub"></p>
+    <div class="op-grid">
+      <button class="opbtn soma" data-jogar="soma"><span class="ic">➕</span><span>Somar<small>conta armada, passo a passo</small></span></button>
+      <button class="opbtn sub-b" data-jogar="subtracao"><span class="ic">➖</span><span>Subtrair<small>conta armada, passo a passo</small></span></button>
+      <button class="opbtn mul" data-jogar="multiplicacao"><span class="ic">✖️</span><span>Multiplicar<small>conta armada, passo a passo</small></span></button>
+      <button class="opbtn div-b" data-jogar="divisao"><span class="ic">➗</span><span>Dividir<small>passo a passo, com tabuada de ajuda</small></span></button>
+    </div>
+  </section>
+
+  <!-- 3b. nível -->
+  <section id="s-nivel" class="screen" hidden>
+    <h2>Escolha o nível</h2>
+    <div class="op-grid">
+      <button class="opbtn n1" data-nivel="1"><span class="ic">🌱</span><span>Nível 1<small>mais fácil, números menores</small></span></button>
+      <button class="opbtn n2" data-nivel="2"><span class="ic">🌿</span><span>Nível 2<small>nível médio</small></span></button>
+      <button class="opbtn n3" data-nivel="3"><span class="ic">🌳</span><span>Nível 3<small>mais desafiador, números maiores</small></span></button>
+    </div>
+  </section>
+
+  <!-- 4. jogo -->
+  <section id="s-jogo" class="screen" data-transient hidden>
+    <div class="hud">
+      <span id="progress"></span>
+      <span>⭐ <b id="points">0</b></span>
+    </div>
+
+    <div class="sum-wrap">
+      <div id="sum" class="sum" aria-live="polite"></div>
+      <p class="legend">U = unidade · D = dezena · C = centena</p>
+    </div>
+
+    <div class="card tutor">
+      <p id="prompt" class="prompt"></p>
+      <div class="helpers">
+        <button id="speak" class="small">🔊 Ouvir</button>
+        <button id="help" class="small">🫧 Contar pra mim</button>
+        <button id="clear" class="small">↺ Limpar</button>
+        <button id="tabuada-btn" class="small" hidden>📋 Tabuada</button>
+      </div>
+      <div id="tabuada-panel" class="tab-panel" hidden></div>
+      <p class="balls-hint">Tocar nas bolinhas é só para ajudar a contar — não precisa, pode digitar a resposta direto.</p>
+      <div id="balls" class="balls"></div>
+      <div id="action"></div>
+      <p id="feedback" class="feedback"></p>
+    </div>
+  </section>
+
+  <!-- 5. resultado -->
+  <section id="s-fim" class="screen" data-transient hidden>
+    <h2>🎉 Parabéns!</h2>
+    <div class="card center">
+      <p class="bigscore"><b id="r-score">0</b> pontos</p>
+      <p>Você resolveu <b id="r-count">5</b> contas passo a passo!</p>
+      <p id="r-status" class="msg"></p>
+      <button id="retry-send" hidden>Tentar enviar de novo</button>
+      <div class="row">
+        <button id="again" class="big">🔁 Jogar de novo</button>
+        <button id="see-rank" class="big" style="background:var(--orange)">🏆 Ver ranking</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ranking -->
+  <section id="s-rank" class="screen" hidden>
+    <h2>🏆 Ranking da semana</h2>
+    <p id="week" class="sub"></p>
+    <div class="chips">
+      <button data-rano="6">6º</button><button data-rano="7">7º</button><button data-rano="8">8º</button><button data-rano="9">9º</button>
+    </div>
+    <div class="tabs">
+      <button data-rop="soma">➕ Soma</button><button data-rop="subtracao">➖ Subtração</button>
+      <button data-rop="multiplicacao">✖️ Multiplicação</button><button data-rop="divisao">➗ Divisão</button>
+    </div>
+    <ol id="rank" class="rank"></ol>
+  </section>
+
+</main>
+<script src="js/config.js"></script>
+<script src="js/api.js"></script>
+<script src="js/badwords.js"></script>
+<script src="js/nav.js"></script>
+<script src="js/tabuada.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
